@@ -14,5 +14,9 @@ public class ColumnsBlockLootTableProvider extends FabricBlockLootTableProvider 
 		for (ColumnTypes columnType : ColumnTypes.values()) {
 			this.addDrop(columnType.block);
 		}
+
+		this.lootTables.forEach((id, lootTable) -> {
+			lootTable.randomSequenceId(id);
+		});
 	}
 }
