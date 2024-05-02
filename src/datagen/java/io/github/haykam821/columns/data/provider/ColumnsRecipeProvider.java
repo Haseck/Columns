@@ -1,5 +1,7 @@
 package io.github.haykam821.columns.data.provider;
 
+import java.util.Objects;
+
 import io.github.haykam821.columns.block.ColumnTypes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -12,12 +14,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.CraftingRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.RecipeJsonBuilder;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.SingleItemRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.CuttingRecipe;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RawShapedRecipe;
+import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
@@ -98,7 +103,7 @@ public class ColumnsRecipeProvider extends FabricRecipeProvider {
 	}
 
 	private static void offerShapedTo(RecipeExporter exporter, Identifier recipeId, ShapedRecipeJsonBuilder factory) {
-		factory.validate(recipeId);
+		RawShapedRecipe rawRecipe = factory.validate(recipeId);
 
 		Identifier advancementId = ColumnsRecipeProvider.getAdvancementId(recipeId);
 		Advancement.Builder advancementBuilder = exporter.getAdvancementBuilder()
@@ -110,10 +115,12 @@ public class ColumnsRecipeProvider extends FabricRecipeProvider {
 
 		AdvancementEntry advancement = advancementBuilder.build(advancementId);
 
-		String group = factory.group == null ? "" : factory.group;
-		CraftingRecipeCategory category = RecipeJsonBuilder.getCraftingCategory(factory.category);
+		String group = Objects.requireNonNullElse(factory.group, "");
+		CraftingRecipeCategory category = CraftingRecipeJsonBuilder.toCraftingCategory(factory.category);
+		ItemStack output = new ItemStack(factory.getOutputItem(), factory.count);
 
-		exporter.accept(new ShapedRecipeJsonBuilder.ShapedRecipeJsonProvider(recipeId, factory.getOutputItem(), factory.count, group, category, factory.pattern, factory.inputs, advancement, factory.showNotification));
+		ShapedRecipe recipe = new ShapedRecipe(group, category, rawRecipe, output, factory.showNotification);
+		exporter.accept(recipeId, recipe, advancement);
 	}
 
 	private static void offerSingleItemTo(RecipeExporter exporter, Identifier recipeId, SingleItemRecipeJsonBuilder factory) {
@@ -129,8 +136,11 @@ public class ColumnsRecipeProvider extends FabricRecipeProvider {
 
 		AdvancementEntry advancement = advancementBuilder.build(advancementId);
 
-		String group = factory.group == null ? "" : factory.group;
-		exporter.accept(new SingleItemRecipeJsonBuilder.SingleItemRecipeJsonProvider(recipeId, factory.serializer, group, factory.input, factory.getOutputItem(), factory.count, advancement));
+		String group = Objects.requireNonNullElse(factory.group, "");
+		ItemStack output = new ItemStack(factory.getOutputItem(), factory.count);
+
+		CuttingRecipe recipe = factory.recipeFactory.create(group, factory.input, output);
+		exporter.accept(recipeId, recipe, advancement);
 	}
 
 	private static Identifier getAdvancementId(Identifier recipeId) {
