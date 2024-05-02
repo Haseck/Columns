@@ -22,5 +22,6 @@
 	"block.columns.red_sandstone_column": "Red Sandstone Column",
 	"block.columns.sandstone_column": "Sandstone Column",
 	"block.columns.stone_brick_column": "Stone Brick Column",
+	"block.columns.tuff_brick_column": "Tuff Brick Column",
 	"block.columns.tuff_column": "Tuff Column"
 }

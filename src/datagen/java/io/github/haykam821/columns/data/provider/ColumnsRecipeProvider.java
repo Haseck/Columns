@@ -54,6 +54,9 @@ public class ColumnsRecipeProvider extends FabricRecipeProvider {
 		ColumnsRecipeProvider.offerCustomColumnStonecuttingRecipe(exporter, ColumnTypes.POLISHED_TUFF.block, Blocks.TUFF);
 
 		ColumnsRecipeProvider.offerCustomColumnStonecuttingRecipe(exporter, ColumnTypes.STONE_BRICK.block, Blocks.STONE);
+
+		ColumnsRecipeProvider.offerCustomColumnStonecuttingRecipe(exporter, ColumnTypes.TUFF_BRICK.block, Blocks.TUFF);
+		ColumnsRecipeProvider.offerCustomColumnStonecuttingRecipe(exporter, ColumnTypes.TUFF_BRICK.block, Blocks.POLISHED_TUFF);
 	}
 
 	public static void offerColumnRecipe(RecipeExporter exporter, Block block, Block base) {
