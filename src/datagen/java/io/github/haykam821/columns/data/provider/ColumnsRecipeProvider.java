@@ -3,6 +3,7 @@ package io.github.haykam821.columns.data.provider;
 import io.github.haykam821.columns.block.ColumnTypes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.advancement.AdvancementRequirements.CriterionMerger;
 import net.minecraft.advancement.AdvancementRewards;
@@ -95,11 +96,14 @@ public class ColumnsRecipeProvider extends FabricRecipeProvider {
 		factory.validate(recipeId);
 
 		Identifier advancementId = ColumnsRecipeProvider.getAdvancementId(recipeId);
-		AdvancementEntry advancement = exporter.getAdvancementBuilder()
+		Advancement.Builder advancementBuilder = exporter.getAdvancementBuilder()
 			.criterion("has_the_recipe", RecipeUnlockedCriterion.create(recipeId))
 			.rewards(AdvancementRewards.Builder.recipe(recipeId))
-			.criteriaMerger(CriterionMerger.OR)
-			.build(advancementId);
+			.criteriaMerger(CriterionMerger.OR);
+
+		factory.criteria.forEach(advancementBuilder::criterion);
+
+		AdvancementEntry advancement = advancementBuilder.build(advancementId);
 
 		String group = factory.group == null ? "" : factory.group;
 		CraftingRecipeCategory category = RecipeJsonBuilder.getCraftingCategory(factory.category);
@@ -111,11 +115,14 @@ public class ColumnsRecipeProvider extends FabricRecipeProvider {
 		factory.validate(recipeId);
 
 		Identifier advancementId = ColumnsRecipeProvider.getAdvancementId(recipeId);
-		AdvancementEntry advancement = exporter.getAdvancementBuilder()
+		Advancement.Builder advancementBuilder = exporter.getAdvancementBuilder()
 			.criterion("has_the_recipe", RecipeUnlockedCriterion.create(recipeId))
 			.rewards(AdvancementRewards.Builder.recipe(recipeId))
-			.criteriaMerger(CriterionMerger.OR)
-			.build(advancementId);
+			.criteriaMerger(CriterionMerger.OR);
+
+		factory.criteria.forEach(advancementBuilder::criterion);
+
+		AdvancementEntry advancement = advancementBuilder.build(advancementId);
 
 		String group = factory.group == null ? "" : factory.group;
 		exporter.accept(new SingleItemRecipeJsonBuilder.SingleItemRecipeJsonProvider(recipeId, factory.serializer, group, factory.input, factory.getOutputItem(), factory.count, advancement));

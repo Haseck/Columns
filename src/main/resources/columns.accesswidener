@@ -2,6 +2,7 @@ accessWidener	v2	named
 
 accessible	method	net/minecraft/data/server/recipe/ShapedRecipeJsonBuilder	validate	(Lnet/minecraft/util/Identifier;)V
 accessible	field	net/minecraft/data/server/recipe/ShapedRecipeJsonBuilder	group	Ljava/lang/String;
+accessible	field	net/minecraft/data/server/recipe/ShapedRecipeJsonBuilder	criteria	Ljava/util/Map;
 accessible	field	net/minecraft/data/server/recipe/ShapedRecipeJsonBuilder	category	Lnet/minecraft/recipe/book/RecipeCategory;
 accessible	field	net/minecraft/data/server/recipe/ShapedRecipeJsonBuilder	showNotification	Z
 accessible	class	net/minecraft/data/server/recipe/ShapedRecipeJsonBuilder$ShapedRecipeJsonProvider
@@ -10,6 +11,7 @@ accessible	field	net/minecraft/data/server/recipe/ShapedRecipeJsonBuilder	patter
 accessible	field	net/minecraft/data/server/recipe/ShapedRecipeJsonBuilder	inputs	Ljava/util/Map;
 
 accessible	method	net/minecraft/data/server/recipe/SingleItemRecipeJsonBuilder	validate	(Lnet/minecraft/util/Identifier;)V
+accessible	field	net/minecraft/data/server/recipe/SingleItemRecipeJsonBuilder	criteria	Ljava/util/Map;
 accessible	field	net/minecraft/data/server/recipe/SingleItemRecipeJsonBuilder	group	Ljava/lang/String;
 accessible	field	net/minecraft/data/server/recipe/SingleItemRecipeJsonBuilder	serializer	Lnet/minecraft/recipe/RecipeSerializer;
 accessible	field	net/minecraft/data/server/recipe/SingleItemRecipeJsonBuilder	input	Lnet/minecraft/recipe/Ingredient;
