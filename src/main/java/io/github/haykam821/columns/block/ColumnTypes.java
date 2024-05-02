@@ -17,6 +17,7 @@ import net.minecraft.util.Identifier;
 
 public enum ColumnTypes {
 	TUFF("tuff", Blocks.TUFF, Items.TUFF_WALL, FeatureFlags.UPDATE_1_21),
+	POLISHED_TUFF("polished_tuff", Blocks.POLISHED_TUFF, Items.POLISHED_TUFF_WALL, FeatureFlags.UPDATE_1_21),
 	COBBLESTONE("cobblestone", Blocks.COBBLESTONE, Items.COBBLESTONE_WALL),
 	MOSSY_COBBLESTONE("mossy_cobblestone", Blocks.MOSSY_COBBLESTONE, Items.MOSSY_COBBLESTONE_WALL),
 	BRICK("brick", Blocks.BRICKS, Items.BRICK_WALL),

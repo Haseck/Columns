@@ -51,6 +51,8 @@ public class ColumnsRecipeProvider extends FabricRecipeProvider {
 
 		ColumnsRecipeProvider.offerCustomColumnStonecuttingRecipe(exporter, ColumnTypes.POLISHED_DEEPSLATE.block, Blocks.COBBLED_DEEPSLATE);
 
+		ColumnsRecipeProvider.offerCustomColumnStonecuttingRecipe(exporter, ColumnTypes.POLISHED_TUFF.block, Blocks.TUFF);
+
 		ColumnsRecipeProvider.offerCustomColumnStonecuttingRecipe(exporter, ColumnTypes.STONE_BRICK.block, Blocks.STONE);
 	}
 
