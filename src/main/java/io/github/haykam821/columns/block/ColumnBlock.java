@@ -1,5 +1,7 @@
 package io.github.haykam821.columns.block;
 
+import com.mojang.serialization.MapCodec;
+
 import io.github.haykam821.columns.Main;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -31,6 +33,8 @@ public class ColumnBlock extends Block implements Waterloggable {
 	private static final VoxelShape UP_CENTER_DOWN_SHAPE = VoxelShapes.union(UP_SHAPE, CENTER_SHAPE, DOWN_SHAPE);
 	private static final VoxelShape UP_CENTER_SHAPE = VoxelShapes.union(UP_SHAPE, CENTER_SHAPE);
 	private static final VoxelShape CENTER_DOWN_SHAPE = VoxelShapes.union(CENTER_SHAPE, DOWN_SHAPE);
+
+	public static final MapCodec<ColumnBlock> CODEC = Block.createCodec(ColumnBlock::new);
 
 	public ColumnBlock(Settings settings) {
 		super(settings);
@@ -89,5 +93,10 @@ public class ColumnBlock extends Block implements Waterloggable {
 	@Override
 	public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(UP, DOWN, WATERLOGGED);
+	}
+
+	@Override
+	protected MapCodec<? extends ColumnBlock> getCodec() {
+		return CODEC;
 	}
 }
