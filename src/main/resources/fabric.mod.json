@@ -20,6 +20,13 @@
 		]
 	},
 	"accessWidener": "columns.accesswidener",
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://haykam.com/links/discord"
+			}
+		}
+	},
 	"license": "MIT",
 	"icon": "assets/columns/icon.png",
 	"depends": {
