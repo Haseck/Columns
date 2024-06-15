@@ -2,7 +2,6 @@ package io.github.haykam821.columns.block;
 
 import io.github.haykam821.columns.Main;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -52,7 +51,7 @@ public enum ColumnTypes {
 		this.base = base;
 		this.wall = wall;
 
-		Block.Settings blockSettings = FabricBlockSettings.copy(base).requires(features);
+		Block.Settings blockSettings = Block.Settings.copy(base).requires(features);
 		this.block = new ColumnBlock(blockSettings);
 
 		Item.Settings itemSettings = new Item.Settings();

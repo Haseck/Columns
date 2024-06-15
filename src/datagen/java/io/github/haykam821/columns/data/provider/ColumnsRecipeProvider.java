@@ -1,6 +1,7 @@
 package io.github.haykam821.columns.data.provider;
 
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
 import io.github.haykam821.columns.block.ColumnTypes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -26,11 +27,12 @@ import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 
 public class ColumnsRecipeProvider extends FabricRecipeProvider {
-	public ColumnsRecipeProvider(FabricDataOutput dataOutput) {
-		super(dataOutput);
+	public ColumnsRecipeProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registries) {
+		super(dataOutput, registries);
 	}
 
 	@Override
