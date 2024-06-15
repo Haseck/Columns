@@ -74,6 +74,6 @@ public class ColumnsModelProvider extends FabricModelProvider {
 	}
 
 	private static Model createModel(String parent, String variant, TextureKey... requiredTextures) {
-		return new Model(Optional.of(new Identifier(Main.MOD_ID, "block/" + parent)), Optional.of(variant), requiredTextures);
+		return new Model(Optional.of(Main.id("block/" + parent)), Optional.of(variant), requiredTextures);
 	}
 }

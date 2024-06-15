@@ -7,9 +7,9 @@ accessible	field	net/minecraft/data/server/recipe/ShapedRecipeJsonBuilder	catego
 accessible	field	net/minecraft/data/server/recipe/ShapedRecipeJsonBuilder	showNotification	Z
 accessible	field	net/minecraft/data/server/recipe/ShapedRecipeJsonBuilder	count	I
 
-accessible	method	net/minecraft/data/server/recipe/SingleItemRecipeJsonBuilder	validate	(Lnet/minecraft/util/Identifier;)V
-accessible	field	net/minecraft/data/server/recipe/SingleItemRecipeJsonBuilder	criteria	Ljava/util/Map;
-accessible	field	net/minecraft/data/server/recipe/SingleItemRecipeJsonBuilder	group	Ljava/lang/String;
-accessible	field	net/minecraft/data/server/recipe/SingleItemRecipeJsonBuilder	input	Lnet/minecraft/recipe/Ingredient;
-accessible	field	net/minecraft/data/server/recipe/SingleItemRecipeJsonBuilder	count	I
-accessible	field	net/minecraft/data/server/recipe/SingleItemRecipeJsonBuilder	recipeFactory	Lnet/minecraft/recipe/CuttingRecipe$RecipeFactory;
+accessible	method	net/minecraft/data/server/recipe/StonecuttingRecipeJsonBuilder	validate	(Lnet/minecraft/util/Identifier;)V
+accessible	field	net/minecraft/data/server/recipe/StonecuttingRecipeJsonBuilder	criteria	Ljava/util/Map;
+accessible	field	net/minecraft/data/server/recipe/StonecuttingRecipeJsonBuilder	group	Ljava/lang/String;
+accessible	field	net/minecraft/data/server/recipe/StonecuttingRecipeJsonBuilder	input	Lnet/minecraft/recipe/Ingredient;
+accessible	field	net/minecraft/data/server/recipe/StonecuttingRecipeJsonBuilder	count	I
+accessible	field	net/minecraft/data/server/recipe/StonecuttingRecipeJsonBuilder	recipeFactory	Lnet/minecraft/recipe/CuttingRecipe$RecipeFactory;

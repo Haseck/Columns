@@ -23,5 +23,7 @@
 	"block.columns.sandstone_column": "Sandstone Column",
 	"block.columns.stone_brick_column": "Stone Brick Column",
 	"block.columns.tuff_brick_column": "Tuff Brick Column",
-	"block.columns.tuff_column": "Tuff Column"
+	"block.columns.tuff_column": "Tuff Column",
+	"tag.block.columns.columns": "Columns",
+	"tag.item.columns.columns": "Columns"
 }

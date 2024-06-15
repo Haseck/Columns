@@ -17,7 +17,7 @@ import net.minecraft.data.server.recipe.CraftingRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
-import net.minecraft.data.server.recipe.SingleItemRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.StonecuttingRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CuttingRecipe;
@@ -81,7 +81,7 @@ public class ColumnsRecipeProvider extends FabricRecipeProvider {
 
 	public static void offerColumnStonecuttingRecipe(RecipeExporter exporter, Block block, Block base) {
 		Identifier blockId = Registries.ITEM.getId(block.asItem());
-		Identifier recipeId = new Identifier(blockId.getNamespace(), blockId.getPath() + "_from_stonecutting");
+		Identifier recipeId = blockId.withSuffixedPath("_from_stonecutting");
 
 		ColumnsRecipeProvider.offerCustomColumnStonecuttingRecipe(exporter, recipeId, block, base);
 	}
@@ -90,12 +90,12 @@ public class ColumnsRecipeProvider extends FabricRecipeProvider {
 		Identifier baseId = Registries.ITEM.getId(base.asItem());
 		Identifier blockId = Registries.ITEM.getId(block.asItem());
 
-		Identifier recipeId = new Identifier(blockId.getNamespace(), blockId.getPath() + "_from_" + baseId.getPath() + "_stonecutting");
+		Identifier recipeId = blockId.withPath(path -> path + "_from_" + baseId.getPath() + "_stonecutting");
 		ColumnsRecipeProvider.offerCustomColumnStonecuttingRecipe(exporter, recipeId, block, base);
 	}
 
 	private static void offerCustomColumnStonecuttingRecipe(RecipeExporter exporter, Identifier recipeId, Block block, Block base) {
-		ColumnsRecipeProvider.offerSingleItemTo(exporter, recipeId, SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(base), RecipeCategory.DECORATIONS, block, 1)
+		ColumnsRecipeProvider.offerSingleItemTo(exporter, recipeId, StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(base), RecipeCategory.DECORATIONS, block, 1)
 			.criterion(RecipeProvider.hasItem(base), RecipeProvider.conditionsFromItem(base)));
 	}
 
@@ -125,7 +125,7 @@ public class ColumnsRecipeProvider extends FabricRecipeProvider {
 		exporter.accept(recipeId, recipe, advancement);
 	}
 
-	private static void offerSingleItemTo(RecipeExporter exporter, Identifier recipeId, SingleItemRecipeJsonBuilder factory) {
+	private static void offerSingleItemTo(RecipeExporter exporter, Identifier recipeId, StonecuttingRecipeJsonBuilder factory) {
 		factory.validate(recipeId);
 
 		Identifier advancementId = ColumnsRecipeProvider.getAdvancementId(recipeId);
@@ -146,6 +146,6 @@ public class ColumnsRecipeProvider extends FabricRecipeProvider {
 	}
 
 	private static Identifier getAdvancementId(Identifier recipeId) {
-		return new Identifier(recipeId.getNamespace(), "recipes/" + recipeId.getPath());
+		return recipeId.withPrefixedPath("recipes/");
 	}
 }

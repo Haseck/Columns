@@ -10,14 +10,12 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.resource.featuretoggle.FeatureFlag;
-import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.util.Identifier;
 
 public enum ColumnTypes {
-	TUFF("tuff", Blocks.TUFF, Items.TUFF_WALL, FeatureFlags.UPDATE_1_21),
-	POLISHED_TUFF("polished_tuff", Blocks.POLISHED_TUFF, Items.POLISHED_TUFF_WALL, FeatureFlags.UPDATE_1_21),
-	TUFF_BRICK("tuff_brick", Blocks.TUFF_BRICKS, Items.TUFF_BRICK_WALL, FeatureFlags.UPDATE_1_21),
+	TUFF("tuff", Blocks.TUFF, Items.TUFF_WALL),
+	POLISHED_TUFF("polished_tuff", Blocks.POLISHED_TUFF, Items.POLISHED_TUFF_WALL),
+	TUFF_BRICK("tuff_brick", Blocks.TUFF_BRICKS, Items.TUFF_BRICK_WALL),
 	COBBLESTONE("cobblestone", Blocks.COBBLESTONE, Items.COBBLESTONE_WALL),
 	MOSSY_COBBLESTONE("mossy_cobblestone", Blocks.MOSSY_COBBLESTONE, Items.MOSSY_COBBLESTONE_WALL),
 	BRICK("brick", Blocks.BRICKS, Items.BRICK_WALL),
@@ -46,12 +44,12 @@ public enum ColumnTypes {
 	public final Block base;
 	public final Item wall;
 
-	private ColumnTypes(String type, Block base, Item wall, FeatureFlag... features) {
-		Identifier id = new Identifier(Main.MOD_ID, type + "_column");
+	private ColumnTypes(String type, Block base, Item wall) {
+		Identifier id = Main.id(type + "_column");
 		this.base = base;
 		this.wall = wall;
 
-		Block.Settings blockSettings = Block.Settings.copy(base).requires(features);
+		Block.Settings blockSettings = Block.Settings.copy(base);
 		this.block = new ColumnBlock(blockSettings);
 
 		Item.Settings itemSettings = new Item.Settings();
